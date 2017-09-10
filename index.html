@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="styles.css">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="root">
+    <div id="button1" >
+        button1
+    </div>
+    <div id="button2" >
+        button2
+    </div>
+</div>
+
+<script>
+    //无参数无返回值
+    function clickAction() {
+        console.log("普通函数:clickAction");
+    }
+    //无参数时 "()" 是必须的
+    let clickAction2 =()=>{
+        console.log("箭头函数 clickAction");
+    }
+    //有参数,无返回值
+    //单个参数
+    let singleParams =(params)=>{
+        console.log(params);
+    }
+    //简写 如果只有一个参数,圆括号是可选的
+    let singleParams2 =params=>{
+        console.log(params);
+    }
+    //多个参数
+    let funcSum1 =(a,b)=>{
+        console.log(a+b);
+    }
+    //有参数,有返回值
+    let funcSum2 =(a,b)=>{
+        return a+b;
+    }
+    //简写 当删除大括号是,他将是一个隐式的返回值,这意味着我们不需要指定我们返回;
+    //1、返回普通变量
+    let funcSum4 =(a,b)=>a+b;
+    let funcSum5 =(a,b)=>{
+        return {"key":a+b};
+    };
+    //2、返回对象时 函数体外要加圆括号
+    let funcSum6 =(a,b)=>({"key":a+b});
+    let test=(a,b)=>{
+        console.log(funcSum6(a,b)) ;
+    }
+    //this的词法解析
+//    在箭头函数出现之前,每个新定义的函数都有它自己的this值(例如,构造函数中的this指向了一个新对象;严格模式下的函数this值是undefined;如果是作为对象方法而调用的函数,则它的this会指向调用他的对象)。实践证明在面向对象分割的编程中,这种凡是会带来很多困扰。为了解决问题可以通过(var self = this或者bing函数)
+//    箭头函数不绑定this 那么就有问题了,在Day5可伸缩图片墙的项目中toggleActive(e)方法中需要获取到点击的标签,用this当然最方便,但如果用箭头函数来写该怎么办咧?
+//        function toggleActive(e) {
+//            console.log(e.propertyName);
+//            if (e.propertyName.includes('flex')) {
+//                this.classList.toggle('open-active');
+//            }
+//        }
+//    这样拿到点击事件的target就是普通方法传过绑定的this了,那事件e怎么获取呢?
+//        let toggleActive=(e)=>{
+//            console.log("toggleActive:"+e.propertyName);
+//            console.log(this);
+//            var panel = e.target;
+//            if (e.propertyName.includes('flex')){
+//                panel.classList.toggle('open-active');
+//            }
+//        }
+//        panels.forEach(panel =>panel.addEventListener('transitionend',toggleActive));//肯定是不对
+//        panels.forEach(panel =>panel.addEventListener('transitionend',toggleActive(e)));//也不对
+//        panels.forEach(panel =>panel.addEventListener('transitionend',e=>{toggleActive(e)}));//这就对了
+    //传event
+    let handleEvent =(e)=>{
+        console.log(e.target.id);
+        var button = document.getElementById(e.target.id);
+        console.log(button);
+        button.style.background = 'red';
+    }
+    const buttons = document.querySelectorAll('.root');
+    buttons.forEach(button=>button.addEventListener("click",e=>{handleEvent(e)}));
+
+
+</script>
+</body>
+</html>

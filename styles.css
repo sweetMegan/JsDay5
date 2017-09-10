@@ -1,0 +1,27 @@
+/*.button1{*/
+/*width: 100px;*/
+/*height: 60px;*/
+/*background: red;*/
+/*}*/
+/*.button2{*/
+/*width: 100px;*/
+/*height: 60px;*/
+/*background:cyan;*/
+/*}*/
+html{
+    background: cyan;
+}
+.root{
+    /*background: red;*/
+}
+.root *{
+    width: 100px;
+    height: 60px;
+    background:cyan;
+    border-style: solid;
+    border-color: white;
+    border-width: 2px;
+    text-align: center;
+    line-height: 60px;
+    margin: 20px;
+}
